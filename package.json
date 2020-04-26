@@ -1,0 +1,17 @@
+{
+    "name": "sherlockstring",
+    "version": "1.0.0",
+    "description": "Find all the strings",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "debugger": "node --inspect index.js"
+    },
+    "author": "Terry U",
+    "license": "ISC",
+    "dependencies": {
+        "csv-writer": "^1.6.0",
+        "php-parser": "^3.0.1",
+        "readdir-enhanced": "^6.0.3"
+    }
+}
