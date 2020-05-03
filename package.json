@@ -10,7 +10,9 @@
     "author": "Terry U",
     "license": "ISC",
     "dependencies": {
+        "acorn": "^7.1.1",
         "csv-writer": "^1.6.0",
+        "esprima": "^4.0.1",
         "php-parser": "^3.0.1",
         "readdir-enhanced": "^6.0.3"
     }

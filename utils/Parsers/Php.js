@@ -28,6 +28,7 @@ const phpParser = class PhpParser {
     async resultParse(content, file, packageName) {
         return new Promise((resolve, reject) => {
             const res = content.filter(item => {
+                //todo add filter in the future
                 if (Array.isArray(item) === false) {
                     return false;
                 }

@@ -3,6 +3,7 @@ const FileReader = require("./FileReader").reader;
 const config = require("./Config");
 const NotSugarFolderException = require("./NotSugarFolderException").sugarException;
 const PhpParser = require("./Parsers/Php").phpParser;
+const JsParser = require("./Parsers/JavaScript").jsParser;
 const CsvWriter = require("./CsvWriter").csv;
 
 const process = class Process {
@@ -39,6 +40,7 @@ const process = class Process {
 
     async parseFiles(files, packageName) {
         const phpParser = new PhpParser();
+        const jsParser = new JsParser();
 
         return Promise.all(
             files.map(async (file) => {
@@ -46,7 +48,7 @@ const process = class Process {
                 if (file.fileType === ".php") {
                     res = await phpParser.parse(file, packageName);
                 } else {
-                    res = false;
+                    res = await jsParser.parse(file, packageName);
                 }
 
                 return res;
