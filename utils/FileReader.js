@@ -9,7 +9,13 @@ const reader = class FileReader {
 
     async readFiles(files) {
         return new Promise((resolve, reject) => {
-            let res = files.map(file => {
+            let res = files.filter(file => {
+                const fileName = this.getFileNameFromString(file);
+
+                const fileStatus = !config.filesToIgnore.includes(fileName);
+
+                return fileStatus;
+            }).map(file => {
                 const fileContent = this.readFile(file);
                 const fileType = path.extname(file);
                 const filePath = file;
@@ -27,6 +33,10 @@ const reader = class FileReader {
 
     joinPath(basePath, ...addPath) {
         return path.join(basePath, ...addPath);
+    }
+
+    getFileNameFromString(stringPath) {
+        return path.parse(stringPath).base;
     }
 
     mkDirSync(path) {

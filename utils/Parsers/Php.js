@@ -1,4 +1,5 @@
 const parser = require("php-parser");
+const parserUtility = require("./ParserUtility");
 
 const phpParser = class PhpParser {
     constructor(options = {}) {
@@ -36,12 +37,16 @@ const phpParser = class PhpParser {
                 const allowedTypes = [
                     "T_CONSTANT_ENCAPSED_STRING",
                 ];
+                const itemValue = item[1];
 
                 if (allowedTypes.includes(itemType) === false) {
                     return false;
                 }
 
-                return true;
+
+                const val = parserUtility(itemValue);
+
+                return val;
             }).map(item => {
                 const fileType = file.fileType;
                 const path = file.filePath;

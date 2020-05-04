@@ -10,9 +10,36 @@ const ignoreDirectories = [
     "docs",
     ".git"
 ];
+
+const filesToIgnore = [
+    "manifest.php"
+];
+
+const keywordsToIgnore = [
+    "'Not A Valid Entry Point'",
+    "View",
+    "view",
+    "base",
+    "'shortHelp'",
+    "'longHelp'",
+    "'pathVars'",
+    "'POST'",
+    "'GET'",
+    "'method'",
+    "'path'",
+    "'reqType'",
+    "Record",
+    "Create",
+    "app:sync:complete",
+    "insert",
+    "'disable_row_level_security'"
+];
+
 const basePathForExportingCsv = path.join(currentPath, "Output")
 
 module.exports = {
+    keywordsToIgnore,
+    filesToIgnore,
     scanTarget,
     allowedExtensionsRegex,
     searchStringDoubleQuoteRegex,

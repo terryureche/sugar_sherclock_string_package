@@ -1,4 +1,5 @@
 const acorn = require("acorn");
+const parserUtility = require("./ParserUtility");
 
 const jsParser = class JsParser {
     constructor(options = {}) {
@@ -22,7 +23,8 @@ const jsParser = class JsParser {
         return new Promise((resolve, reject) => {
             const res = content.filter(item => {
                 //todo add filter in the future
-                return true;
+                const val = parserUtility(item.value);
+                return val;
             }).map(item => {
                 const fileType = file.fileType;
                 const path = file.filePath;
