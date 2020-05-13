@@ -4,6 +4,7 @@ const config = require("./Config");
 const NotSugarFolderException = require("./NotSugarFolderException").sugarException;
 const PhpParser = require("./Parsers/Php").phpParser;
 const JsParser = require("./Parsers/JavaScript").jsParser;
+const HbsParser = require("./Parsers/Hbs");
 const CsvWriter = require("./CsvWriter").csv;
 
 const process = class Process {
@@ -41,14 +42,17 @@ const process = class Process {
     async parseFiles(files, packageName) {
         const phpParser = new PhpParser();
         const jsParser = new JsParser();
+        const hbsParser = new HbsParser();
 
         return Promise.all(
             files.map(async (file) => {
                 let res
                 if (file.fileType === ".php") {
                     res = await phpParser.parse(file, packageName);
-                } else {
+                } else if (file.fileType === ".js") {
                     res = await jsParser.parse(file, packageName);
+                } else if (file.fileType === ".hbs") {
+                    res = hbsParser.parse(file, packageName);
                 }
 
                 return res;
